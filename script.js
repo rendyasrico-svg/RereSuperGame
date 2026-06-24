@@ -42,7 +42,7 @@ window.addEventListener("resize", resize);
 
 const bgm = new Audio("bgm.mp3");
 const jumpSound = new Audio("jump.mp3");
-const coinSound = new Audio("/coin.mp3");
+const coinSound = new Audio("coin.mp3");
 const hitSound = new Audio("hit.mp3");
 const gameOverSound = new Audio("game_over.mp3");
 const startSound = new Audio("start_game.mp3");
