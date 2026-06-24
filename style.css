@@ -11,7 +11,7 @@ html, body {
     width: 100%;
     height: 100%;
     overflow: hidden;
-    background: #87ceeb; /* fallback langit biru kalau canvas kosong */
+    background: #87ceeb;
     -webkit-tap-highlight-color: transparent;
     user-select: none;
 }
@@ -26,7 +26,7 @@ html, body {
     width: 100%;
     height: 100%;
     z-index: 1;
-    background: transparent; /* PENTING: jangan hitam */
+    background: transparent;
 }
 
 /* ========================================
@@ -34,14 +34,14 @@ html, body {
    ======================================== */
 #ui {
     position: fixed;
-    top: 15px;
-    left: 15px;
+    top: 10px;
+    left: 10px;
     z-index: 999;
     color: white;
-    font-size: 24px;
+    font-size: 18px;
     font-family: Arial, sans-serif;
     display: flex;
-    gap: 20px;
+    gap: 14px;
     text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
     pointer-events: none;
 }
@@ -51,12 +51,12 @@ html, body {
    ======================================== */
 #controls {
     position: fixed;
-    bottom: 20px;
+    bottom: 10px;
     left: 0;
     width: 100%;
     display: flex;
     justify-content: space-between;
-    padding: 0 20px;
+    padding: 0 16px;
     z-index: 999;
     user-select: none;
 }
@@ -64,13 +64,13 @@ html, body {
 #controls .left-buttons,
 #controls .right-buttons {
     display: flex;
-    gap: 15px;
+    gap: 10px;
 }
 
 #controls button {
-    width: 80px;
-    height: 80px;
-    font-size: 32px;
+    width: 65px;
+    height: 65px;
+    font-size: 26px;
     border: none;
     border-radius: 50%;
     background: rgba(255, 255, 255, 0.25);
@@ -91,7 +91,7 @@ html, body {
    ======================================== */
 #shoot {
     background: rgba(255, 120, 0, 0.7);
-    font-size: 28px;
+    font-size: 24px;
     box-shadow: 0 0 20px rgba(255, 100, 0, 0.4);
 }
 #shoot:active {
@@ -118,7 +118,7 @@ html, body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 20px;
+    gap: 16px;
     animation: popIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
@@ -128,7 +128,7 @@ html, body {
 }
 
 #overlay-title {
-    font-size: 64px;
+    font-size: clamp(36px, 8vw, 64px);
     font-weight: 900;
     font-family: Arial Black, Arial, sans-serif;
     letter-spacing: 2px;
@@ -145,7 +145,7 @@ html, body {
 }
 
 #overlay-score {
-    font-size: 28px;
+    font-size: clamp(18px, 4vw, 28px);
     color: #ffffff;
     font-family: Arial, sans-serif;
     font-weight: bold;
@@ -153,9 +153,9 @@ html, body {
 }
 
 #overlay-btn {
-    margin-top: 10px;
-    padding: 16px 40px;
-    font-size: 22px;
+    margin-top: 8px;
+    padding: 14px 36px;
+    font-size: clamp(16px, 3vw, 22px);
     font-weight: bold;
     border: none;
     border-radius: 50px;
@@ -173,7 +173,72 @@ html, body {
 }
 
 /* ========================================
-   INTRO SCREEN (FULLSCREEN)
+   LOADING FULLSCREEN
+   ======================================== */
+#loading {
+    position: fixed;
+    inset: 0;
+    z-index: 999999;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: #000;
+    gap: 16px;
+    transition: opacity 0.6s ease;
+    overflow: hidden;
+}
+
+#loading-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    z-index: 0;
+}
+
+#loading-bar-wrap {
+    position: relative;
+    z-index: 2;
+    width: 70%;
+    max-width: 280px;
+    height: 12px;
+    background: rgba(0, 0, 0, 0.7);
+    border-radius: 999px;
+    overflow: hidden;
+    border: 2px solid rgba(255,255,255,0.4);
+    box-shadow: 0 0 40px rgba(255,200,0,0.3);
+}
+
+#loading-bar {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, #ff8800, #ffe600);
+    border-radius: 999px;
+    transition: width 0.1s linear;
+    box-shadow: 0 0 10px rgba(255,200,0,0.6);
+}
+
+#loading-text {
+    position: relative;
+    z-index: 2;
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff;
+    font-family: Arial, sans-serif;
+    letter-spacing: 3px;
+    text-shadow: 0 0 20px rgba(0,0,0,0.9);
+    background: rgba(0,0,0,0.5);
+    padding: 6px 20px;
+    border-radius: 30px;
+    backdrop-filter: blur(4px);
+    animation: blinkTap 1s ease-in-out infinite;
+}
+
+/* ========================================
+   INTRO SCREEN
    ======================================== */
 #intro {
     position: fixed;
@@ -210,30 +275,8 @@ html, body {
         radial-gradient(2px 2px at 50% 85%, #fff, transparent),
         radial-gradient(3px 3px at 65% 75%, #ffe, transparent),
         radial-gradient(2px 2px at 78% 90%, #fff, transparent),
-        radial-gradient(2px 2px at 90% 60%, #fff, transparent),
-        radial-gradient(2px 2px at 96% 78%, #fff, transparent),
-        radial-gradient(2px 2px at 42% 92%, #fff, transparent),
-        radial-gradient(3px 3px at 57% 62%, #ffe, transparent),
-        radial-gradient(2px 2px at 83% 50%, #fff, transparent);
+        radial-gradient(2px 2px at 90% 60%, #fff, transparent);
     animation: twinkle 2.5s ease-in-out infinite alternate;
-    z-index: 0;
-}
-
-#intro::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background-image:
-        radial-gradient(4px 4px at 8%  20%, #ffdd00, transparent),
-        radial-gradient(5px 5px at 28% 12%, #ffffff, transparent),
-        radial-gradient(4px 4px at 48% 30%, #aaddff, transparent),
-        radial-gradient(5px 5px at 68% 8%,  #ffdd00, transparent),
-        radial-gradient(4px 4px at 85% 25%, #ffffff, transparent),
-        radial-gradient(5px 5px at 18% 72%, #aaddff, transparent),
-        radial-gradient(4px 4px at 55% 78%, #ffdd00, transparent),
-        radial-gradient(5px 5px at 75% 65%, #ffffff, transparent),
-        radial-gradient(4px 4px at 92% 85%, #aaddff, transparent);
-    animation: twinkle 1.8s ease-in-out infinite alternate-reverse;
     z-index: 0;
 }
 
@@ -248,42 +291,24 @@ html, body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 18px;
-    padding: 36px 28px;
+    gap: 10px;
+    padding: 20px 20px;
     background: rgba(0, 0, 0, 0.5);
     border: 2px solid rgba(255, 220, 0, 0.4);
-    border-radius: 24px;
+    border-radius: 20px;
     backdrop-filter: blur(10px);
     box-shadow: 0 0 60px rgba(255, 180, 0, 0.2);
-    max-width: 380px;
     width: 90%;
-    animation: floatBox 3s ease-in-out infinite;
-    max-height: 95vh;
+    max-width: 400px;
+    max-height: 92vh;
     overflow-y: auto;
     box-sizing: border-box;
-}
-
-#intro-box::before {
-    content: '';
-    position: absolute;
-    inset: -40px;
-    background: radial-gradient(ellipse at center,
-        rgba(255, 180, 0, 0.15) 0%,
-        rgba(0, 150, 255, 0.08) 50%,
-        transparent 70%);
-    border-radius: 50%;
-    z-index: -1;
-    animation: aura 3s ease-in-out infinite alternate;
-}
-
-@keyframes aura {
-    from { opacity: 0.5; transform: scale(0.95); }
-    to   { opacity: 1;   transform: scale(1.05); }
+    animation: floatBox 3s ease-in-out infinite;
 }
 
 @keyframes floatBox {
     0%, 100% { transform: translateY(0); }
-    50%       { transform: translateY(-10px); }
+    50%       { transform: translateY(-6px); }
 }
 
 #intro-title {
@@ -291,19 +316,16 @@ html, body {
     flex-direction: column;
     align-items: center;
     line-height: 1;
-    gap: 4px;
+    gap: 2px;
 }
 
 .title-rere {
-    font-size: 72px;
+    font-size: clamp(36px, 10vw, 72px);
     font-weight: 900;
     font-family: Arial Black, Arial, sans-serif;
     color: #ffe600;
-    text-shadow:
-        0 0 20px #ffaa00,
-        0 4px 0 #a06000,
-        0 6px 0 #704000;
-    letter-spacing: 6px;
+    text-shadow: 0 0 20px #ffaa00, 0 4px 0 #a06000;
+    letter-spacing: 4px;
     animation: titlePulse 1.5s ease-in-out infinite alternate;
 }
 
@@ -313,27 +335,25 @@ html, body {
 }
 
 .title-super {
-    font-size: 28px;
+    font-size: clamp(16px, 4vw, 28px);
     font-weight: 900;
     font-family: Arial Black, Arial, sans-serif;
     color: #ffffff;
-    letter-spacing: 12px;
+    letter-spacing: 8px;
     text-shadow: 0 2px 8px rgba(0,0,0,0.8);
 }
 
 .title-game {
-    font-size: 42px;
+    font-size: clamp(24px, 6vw, 42px);
     font-weight: 900;
     font-family: Arial Black, Arial, sans-serif;
     color: #00e5ff;
-    letter-spacing: 8px;
-    text-shadow:
-        0 0 16px #00aaff,
-        0 3px 0 #004488;
+    letter-spacing: 6px;
+    text-shadow: 0 0 16px #00aaff, 0 3px 0 #004488;
 }
 
 #intro-sub {
-    font-size: 15px;
+    font-size: clamp(11px, 2.5vw, 15px);
     color: #ffdd88;
     font-family: Arial, sans-serif;
     text-align: center;
@@ -342,28 +362,28 @@ html, body {
 
 #intro-quotes {
     background: rgba(255, 255, 255, 0.07);
-    border-radius: 14px;
-    padding: 16px 20px;
+    border-radius: 12px;
+    padding: 10px 16px;
     width: 100%;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 6px;
     text-align: center;
 }
 
 #intro-quotes p {
-    font-size: 15px;
+    font-size: clamp(11px, 2.5vw, 14px);
     color: #f0e68c;
     font-family: Arial, sans-serif;
     margin: 0;
-    line-height: 1.5;
+    line-height: 1.4;
     text-shadow: 0 1px 4px rgba(0,0,0,0.6);
 }
 
 #intro-btn {
-    margin-top: 6px;
-    padding: 18px 50px;
-    font-size: 22px;
+    margin-top: 4px;
+    padding: clamp(10px, 2vh, 16px) clamp(20px, 5vw, 44px);
+    font-size: clamp(14px, 3.5vw, 20px);
     font-weight: 900;
     font-family: Arial Black, Arial, sans-serif;
     border: none;
@@ -372,7 +392,6 @@ html, body {
     color: white;
     cursor: pointer;
     letter-spacing: 2px;
-    white-space: nowrap;
     width: 85%;
     text-align: center;
     display: flex;
@@ -381,14 +400,13 @@ html, body {
     touch-action: manipulation;
     transition: transform 0.1s, box-shadow 0.1s;
     animation: btnGlow 1.2s ease-in-out infinite alternate;
-    box-shadow:
-        0 6px 0 #991100,
-        0 8px 20px rgba(255, 80, 0, 0.5);
+    box-shadow: 0 5px 0 #991100, 0 7px 16px rgba(255, 80, 0, 0.5);
+    white-space: nowrap;
 }
 
 @keyframes btnGlow {
-    from { box-shadow: 0 6px 0 #991100, 0 8px 20px rgba(255,80,0,0.4); }
-    to   { box-shadow: 0 6px 0 #991100, 0 8px 40px rgba(255,150,0,0.8); }
+    from { box-shadow: 0 5px 0 #991100, 0 7px 16px rgba(255,80,0,0.4); }
+    to   { box-shadow: 0 5px 0 #991100, 0 7px 32px rgba(255,150,0,0.8); }
 }
 
 #intro-btn:active {
@@ -397,7 +415,7 @@ html, body {
 }
 
 #intro-tap {
-    font-size: 12px;
+    font-size: clamp(9px, 2vw, 12px);
     color: rgba(255,255,255,0.4);
     font-family: Arial, sans-serif;
     text-align: center;
@@ -410,84 +428,18 @@ html, body {
 }
 
 /* ========================================
-   LOADING FULLSCREEN
-   ======================================== */
-#loading {
-    position: fixed;
-    inset: 0;
-    z-index: 999999;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background: #000;
-    gap: 20px;
-    transition: opacity 0.6s ease;
-    overflow: hidden;
-}
-
-#loading-img {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    object-position: center center;
-    z-index: 0;
-    background: #1a6fa8; /* warna langit di belakang gambar */
-}
-
-#loading-bar-wrap {
-    position: relative;
-    z-index: 2;
-    width: 80%;
-    max-width: 300px;
-    height: 14px;
-    background: rgba(0, 0, 0, 0.7);
-    border-radius: 999px;
-    overflow: hidden;
-    border: 2px solid rgba(255,255,255,0.4);
-    box-shadow: 0 0 40px rgba(255,200,0,0.3);
-}
-
-#loading-bar {
-    height: 100%;
-    width: 0%;
-    background: linear-gradient(90deg, #ff8800, #ffe600);
-    border-radius: 999px;
-    transition: width 0.1s linear;
-    box-shadow: 0 0 10px rgba(255,200,0,0.6);
-}
-
-#loading-text {
-    position: relative;
-    z-index: 2;
-    font-size: 18px;
-    font-weight: bold;
-    color: #fff;
-    font-family: Arial, sans-serif;
-    letter-spacing: 4px;
-    text-shadow: 0 0 20px rgba(0,0,0,0.9);
-    background: rgba(0,0,0,0.5);
-    padding: 8px 24px;
-    border-radius: 30px;
-    backdrop-filter: blur(4px);
-    animation: blinkTap 1s ease-in-out infinite;
-}
-
-/* ========================================
    TOMBOL GEAR / PAUSE MENU
    ======================================== */
 #gear-btn {
     position: fixed;
-    top: 15px;
-    right: 15px;
+    top: 10px;
+    right: 10px;
     z-index: 9999;
-    width: 50px;
-    height: 50px;
+    width: 44px;
+    height: 44px;
     border: none;
     border-radius: 50%;
-    font-size: 24px;
+    font-size: 20px;
     cursor: pointer;
     background: rgba(255,255,255,0.85);
 }
@@ -503,99 +455,137 @@ html, body {
 
 .menu-box {
     background: white;
-    padding: 25px;
+    padding: 20px;
     border-radius: 15px;
-    min-width: 250px;
+    min-width: 220px;
     text-align: center;
 }
 
 .menu-box h2 {
     margin-bottom: 8px;
     font-family: Arial, sans-serif;
+    font-size: 18px;
 }
 
 .menu-box button {
     width: 100%;
-    padding: 12px;
-    margin-top: 10px;
+    padding: 10px;
+    margin-top: 8px;
     border: none;
     border-radius: 10px;
     cursor: pointer;
-    font-size: 16px;
+    font-size: 15px;
     font-family: Arial, sans-serif;
 }
 
 /* ========================================
-   RESPONSIVE DESKTOP
+   LANDSCAPE HP (orientasi horizontal)
    ======================================== */
-@media (min-width: 768px) {
-    #intro-box {
-        max-width: 480px;
-        padding: 40px 40px;
+@media (orientation: landscape) and (max-height: 500px) {
+
+    /* Loading: tetap cover penuh */
+    #loading-img {
+        object-fit: cover;
+        object-position: center center;
     }
 
-    .title-rere  { font-size: 90px; }
-    .title-super { font-size: 34px; }
-    .title-game  { font-size: 52px; }
+    /* Intro box: scroll horizontal, lebih kecil */
+    #intro-box {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        max-width: 95vw;
+        max-height: 90vh;
+        gap: 8px;
+        padding: 12px 16px;
+    }
 
-    #intro-sub       { font-size: 18px; }
-    #intro-quotes p  { font-size: 17px; }
+    #intro-title {
+        flex-direction: row;
+        gap: 8px;
+        align-items: baseline;
+    }
+
+    .title-rere  { font-size: clamp(24px, 5vh, 40px); }
+    .title-super { font-size: clamp(12px, 2.5vh, 18px); letter-spacing: 4px; }
+    .title-game  { font-size: clamp(18px, 4vh, 28px); letter-spacing: 3px; }
+
+    #intro-sub { font-size: 11px; }
+
+    #intro-quotes {
+        padding: 6px 12px;
+        gap: 3px;
+    }
+    #intro-quotes p { font-size: 10px; line-height: 1.3; }
 
     #intro-btn {
-        font-size: 26px;
-        padding: 20px 60px;
+        padding: 10px 24px;
+        font-size: 14px;
+        width: auto;
     }
 
+    #intro-tap { display: none; }
+
+    /* Kontrol tombol landscape: lebih kecil */
     #controls button {
-        width: 70px;
-        height: 70px;
-        font-size: 28px;
+        width: 52px;
+        height: 52px;
+        font-size: 20px;
+    }
+
+    #controls {
+        bottom: 6px;
+        padding: 0 12px;
     }
 
     #ui {
-        font-size: 28px;
-        top: 20px;
-        left: 20px;
+        font-size: 14px;
+        top: 6px;
+        left: 8px;
+        gap: 10px;
     }
 
-    #overlay-title { font-size: 80px; }
-    #overlay-score { font-size: 32px; }
-    #overlay-btn   { font-size: 26px; padding: 18px 50px; }
+    #gear-btn {
+        width: 36px;
+        height: 36px;
+        font-size: 16px;
+        top: 6px;
+        right: 8px;
+    }
 }
 
 /* ========================================
-   RESPONSIVE MOBILE KECIL
+   PORTRAIT MOBILE KECIL
    ======================================== */
-@media (max-width: 480px) {
-    .title-rere  { font-size: 48px; letter-spacing: 3px; }
-    .title-super { font-size: 20px; letter-spacing: 6px; }
-    .title-game  { font-size: 30px; letter-spacing: 4px; }
+@media (orientation: portrait) and (max-width: 400px) {
+    .title-rere  { font-size: 40px; letter-spacing: 3px; }
+    .title-super { font-size: 16px; letter-spacing: 5px; }
+    .title-game  { font-size: 26px; letter-spacing: 4px; }
 
-    #intro-sub      { font-size: 13px; }
-    #intro-quotes p { font-size: 13px; }
+    #intro-box { padding: 16px 14px; gap: 8px; }
 
     #intro-btn {
-        font-size: 18px;
-        padding: 14px 30px;
+        font-size: 16px;
+        padding: 12px 24px;
         width: 90%;
-        white-space: normal;
     }
 
-    #intro-tap  { font-size: 10px; }
-
-    #intro-box {
-        padding: 20px 16px;
-        gap: 12px;
+    #controls button {
+        width: 60px;
+        height: 60px;
+        font-size: 24px;
     }
 }
 
 /* ========================================
-   RESPONSIVE TABLET
+   PORTRAIT TABLET / DESKTOP
    ======================================== */
-@media (min-width: 481px) and (max-width: 768px) {
-    .title-rere  { font-size: 60px; }
-    .title-super { font-size: 24px; }
-    .title-game  { font-size: 36px; }
-
-    #intro-box { padding: 30px 24px; }
+@media (orientation: portrait) and (min-width: 600px) {
+    #intro-box { max-width: 420px; padding: 30px 28px; }
+    .title-rere  { font-size: 80px; }
+    .title-super { font-size: 30px; }
+    .title-game  { font-size: 46px; }
+    #intro-btn   { font-size: 22px; padding: 16px 48px; }
+    #controls button { width: 75px; height: 75px; font-size: 30px; }
+    #ui { font-size: 22px; }
 }
