@@ -1,0 +1,22 @@
+{
+    "name": "Rere Super Game",
+    "short_name": "Rere Game",
+    "description": "Game petualangan seru Rere Super Game!",
+    "start_url": "./index.html",
+    "display": "fullscreen",
+    "orientation": "landscape",
+    "background_color": "#0a0a2e",
+    "theme_color": "#ffe600",
+    "icons": [
+        {
+            "src": "App_icon.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "App_icon.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ]
+}
